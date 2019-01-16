@@ -19,7 +19,18 @@ class Field extends acf_field
      *
      * @var array
      */
-    public $forms;
+    private $forms;
+    private $loaded_forms = false;
+
+    private function lazyLoadForms()
+    {
+        if (!$this->loaded_forms) {
+            if (class_exists('GFFormsModel')) {
+                $this->forms = GFFormsModel::get_forms();
+            }
+            $this->loaded_forms = true;
+        }
+    }
 
     public function __construct()
     {
@@ -34,10 +45,6 @@ class Field extends acf_field
 
         // Get our notices up and running
         $this->notices = new Notices();
-
-	    if (class_exists('GFFormsModel')) {
-		    $this->forms = GFFormsModel::get_forms();
-	    }
 
         // Execute the parent constructor as well
         parent::__construct();
@@ -105,6 +112,7 @@ class Field extends acf_field
             return false;
         }
 
+        $this->lazyLoadForms();
         foreach ($this->forms as $form) {
             $choices[ $form->id ] = $form->title;
         }
@@ -244,6 +252,7 @@ class Field extends acf_field
         }
 
         // Check if there are forms and set our choices
+        $this->lazyLoadForms();
         if (!$this->forms) {
             $this->notices->hasActiveGravityForms(true, true);
 
