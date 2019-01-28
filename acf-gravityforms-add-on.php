@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Advanced Custom Fields: Gravityforms Add-on
-Plugin URI: https://github.com/dannyvanholten/acf-gravityforms-add-on
+Plugin URI: https://github.com/RupW/acf-gravityforms-add-on
 Description: Advanced Custom Field with which we can select Gravityforms.
-Version: 1.2.1
-Author: Danny van Holten
+Version: 1.2.2
+Author: Danny van Holten + Softwire fixes
 Author URI: http://www.dannyvanholten.com/
 Copyright: Danny van Holten
 */
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 } // Exit if accessed directly
 
 // Define multiple necessary constants
-define('ACF_GF_FIELD_VERSION', '1.2.1');
+define('ACF_GF_FIELD_VERSION', '1.2.2');
 define('ACF_GF_FIELD_TEXTDOMAIN', 'acf-gravityforms-add-on');
 define('ACF_GF_FIELD_LANGUAGES', dirname(plugin_basename(__FILE__)) . '/languages/');
 
